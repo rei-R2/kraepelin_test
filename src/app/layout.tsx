@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins, Comfortaa } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/customeComponents/fragments/theme_provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700", "900"],
+  variable: "--font-poppins",
+});
+
+const comfortaa = Comfortaa({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "500", "700"],
+  variable: "--font-comfortaa",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +28,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${poppins.variable} ${comfortaa.variable}`}>
+      <body className="font-poppins">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
