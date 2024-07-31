@@ -1,33 +1,44 @@
-import { MutableRefObject } from "react";
-import { Input } from "@/components/ui/input";
+"use client";
 
-const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+import {
+  Dispatch,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Input } from "@/components/ui/input";
+import clsx from "clsx";
+
 export default function InputUser({
-  isStart,
-  inputUserRef,
-  inputUser,
-  setInputUser,
+  input,
+  setInput,
   recordInputUser,
+  isStart,
   result,
 }: {
+  input: number | null;
+  setInput: Dispatch<SetStateAction<number | null>>;
+  recordInputUser: number[];
   isStart: boolean;
-  inputUserRef: MutableRefObject<HTMLInputElement | null>;
-  inputUser: string;
-  setInputUser: React.Dispatch<React.SetStateAction<string>>;
-  recordInputUser: string[];
-  result: string[];
+  result: boolean[];
 }) {
+  const inputUserRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
+
+  useEffect(() => {
+    if (isStart) {
+      inputUserRef.current?.focus();
+    }
+  }, [isStart]);
+
   return (
     <div className="absolute left-[45%] top-1/2 flex h-24 w-24 -translate-y-[57%] items-center justify-end rounded-full border-4 border-gray-300 bg-transparent dark:border-gray-700 lg:left-[48%] lg:h-32 lg:w-32">
       <Input
         ref={inputUserRef}
         type="number"
-        value={inputUser}
-        onChange={(e) => {
-          isStart &&
-            number.includes(Number(e.target.value)) &&
-            setInputUser(e.target.value);
-        }}
+        value={input ? input : ""}
+        onChange={(e) => setInput(Number(e.target.value))}
         className="bg-dark h-10 w-3 translate-x-1 border-[1px] border-gray-200 bg-primary-foreground p-0 text-center text-4xl font-semibold tracking-wide text-teal-500 focus-visible:ring-gray-200 dark:border-gray-800 dark:bg-primary dark:focus-visible:ring-gray-800 lg:h-12"
       />
 
@@ -37,14 +48,15 @@ export default function InputUser({
           {recordInputUser.map((num, i) => (
             <p
               key={i}
-              className={`${result[i] === "true" && "text-teal-500"} ${
-                result[i] === "false" && "text-red-500"
-              } block px-1 text-center text-3xl font-semibold tracking-wide lg:px-2 lg:text-4xl`}
+              className={clsx(
+                "block px-1 text-center text-3xl font-semibold tracking-wide lg:px-2 lg:text-4xl",
+                { "text-red-500": !result[i], "text-teal-500": result[i] },
+              )}
             >
               {num}
             </p>
           ))}
-          {/* layer */}
+
           <div className="absolute right-0 top-0 z-10 h-12 w-14 bg-gradient-to-l from-primary-foreground to-transparent dark:from-[#09090b] dark:to-transparent" />
         </div>
       </div>

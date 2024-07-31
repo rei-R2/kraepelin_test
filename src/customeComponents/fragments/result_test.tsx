@@ -30,7 +30,7 @@ export default function ResultTest({
   dataChart,
   lableTimeDataChart,
 }: {
-  result: string[];
+  result: boolean[];
   dataChart: number[];
   lableTimeDataChart: string[];
 }) {
@@ -76,6 +76,14 @@ export default function ResultTest({
           },
           options: {
             responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                },
+              },
+            },
           },
         };
 
@@ -113,17 +121,13 @@ export default function ResultTest({
           <tbody>
             <tr>
               <td className="text-center text-2xl text-teal-500 lg:text-3xl">
-                {result.filter((correct) => correct === "true").length}
+                {result.filter((correct) => correct).length}
               </td>
               <td className="text-center text-2xl text-red-500 lg:text-3xl">
-                {result.filter((correct) => correct === "false").length}
+                {result.filter((correct) => !correct).length}
               </td>
               <td className="text-center text-2xl text-gray-800 lg:text-3xl">
-                {
-                  result.filter(
-                    (value) => value !== "break" && value !== "empty",
-                  ).length
-                }
+                {result.length}
               </td>
             </tr>
           </tbody>

@@ -1,17 +1,10 @@
 export const generateKarepelinTest = () => {
-  const numbers: Array<number> = [];
-  const mapTest: number[][] = [];
+  const listNumber: Array<number> = [];
 
-  for (let i = 0; i < 5000; i++) {
+  for (let i = 0; i < 10; i++) {
     const random = Math.random() * (9 - 0) + 0;
-    numbers.push(Number(random.toFixed(0)));
+    listNumber.push(Number(random.toFixed(0)));
   }
 
-  for (let j = 0; j < numbers.length; j++) {
-    if (j < numbers.length) {
-      mapTest.push([numbers[j], numbers[j + 1], numbers[j] + numbers[j + 1]]);
-    }
-  }
-
-  return { numbers, mapTest };
+  return { listNumber };
 };
