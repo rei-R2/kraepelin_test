@@ -4,7 +4,10 @@ export default function ListTest({ numbers }: { numbers: number[] }) {
       {/* shadow */}
       <div className="absolute left-1/2 top-0 z-20 h-36 w-32 -translate-x-1/2 bg-gradient-to-b from-primary-foreground to-transparent dark:from-[#09090b] dark:to-transparent" />
       {/* numbers */}
-      <div className="relative z-10 mx-auto h-[25rem] w-fit overflow-hidden bg-primary-foreground duration-500 dark:bg-primary lg:h-[31rem]">
+      <div
+        id="listNumber"
+        className="relative z-10 mx-auto h-[25rem] w-fit overflow-hidden bg-primary-foreground duration-500 dark:bg-primary lg:h-[31rem]"
+      >
         {numbers.map((test, i) => (
           <p
             key={i}

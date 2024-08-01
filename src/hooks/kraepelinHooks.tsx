@@ -48,8 +48,8 @@ export const useKraepelin = () => {
   useEffect(() => {
     // set position test
     if (isStart && positionTest === 0) {
-      const element = document.getElementById("#0");
-      element && element.scrollIntoView({ behavior: "smooth" });
+      const element = document.getElementById("listNumber");
+      element && element.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     } else {
       const element = document.getElementById(`#${positionTest}`);
       if (element) {
