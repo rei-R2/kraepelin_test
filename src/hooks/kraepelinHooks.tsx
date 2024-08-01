@@ -14,9 +14,12 @@ export const useKraepelin = () => {
 
   useEffect(() => {
     // generate numbers
-    const { listNumber } = generateKarepelinTest();
-    setNumbers(listNumber);
-  }, []);
+    if (isStart) {
+      const { listNumber } = generateKarepelinTest();
+      setNumbers(listNumber);
+      setPositionTest(0);
+    }
+  }, [isStart]);
 
   useEffect(() => {
     // generate test
@@ -28,14 +31,20 @@ export const useKraepelin = () => {
 
   useEffect(() => {
     // generate test
-    const mapTest: number[][] = [];
-    for (let i = 0; i < numbers.length; i++) {
-      if (i < numbers.length) {
-        mapTest.push([numbers[i], numbers[i + 1], numbers[i] + numbers[i + 1]]);
+    if (isStart) {
+      const mapTest: number[][] = [];
+      for (let i = 0; i < numbers.length; i++) {
+        if (i < numbers.length) {
+          mapTest.push([
+            numbers[i],
+            numbers[i + 1],
+            numbers[i] + numbers[i + 1],
+          ]);
+        }
       }
+      setTest(mapTest);
     }
-    setTest(mapTest);
-  }, [numbers]);
+  }, [isStart, numbers]);
 
   useEffect(() => {
     // set position test
@@ -53,26 +62,7 @@ export const useKraepelin = () => {
           new Date().setMinutes(new Date().getMinutes() + timer),
         ).toISOString(),
       );
-
-      // generate numbers
-      const { listNumber } = generateKarepelinTest();
-      setNumbers(listNumber);
-
-      // generate test
-      const mapTest: number[][] = [];
-      for (let i = 0; i < numbers.length; i++) {
-        if (i < numbers.length) {
-          mapTest.push([
-            numbers[i],
-            numbers[i + 1],
-            numbers[i] + numbers[i + 1],
-          ]);
-        }
-      }
-      setTest(mapTest);
-      setPositionTest(0);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isStart, timer]);
 
   useEffect(() => {

@@ -44,7 +44,7 @@ export default function Header({
   }, [isDark, setTheme]);
 
   return (
-    <div className="absolute left-1/2 top-8 z-30 mx-auto flex w-full -translate-x-1/2 items-end justify-between px-5 md:top-10 md:w-2/3">
+    <div className="absolute left-1/2 top-8 z-30 mx-auto flex w-full -translate-x-1/2 items-end justify-between px-5 backdrop-blur-lg md:top-10 md:w-2/3">
       {/* title & mode */}
       <div className="flex h-10 w-fit items-center gap-x-3 md:h-12 md:gap-x-5">
         {/* switch mode */}
