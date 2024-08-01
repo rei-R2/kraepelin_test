@@ -17,7 +17,6 @@ export const useKraepelin = () => {
     if (isStart) {
       const { listNumber } = generateKarepelinTest();
       setNumbers(listNumber);
-      setPositionTest(0);
     }
   }, [isStart]);
 

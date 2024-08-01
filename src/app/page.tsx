@@ -66,7 +66,10 @@ export default function App() {
           } absolute left-1/2 top-0 z-20 flex h-full w-full origin-center -translate-x-1/2 items-center justify-center gap-y-6 bg-primary-foreground transition duration-200 dark:bg-primary md:w-80 lg:w-[35rem]`}
         >
           <button
-            onClick={() => setIsStart((start) => !start)}
+            onClick={() => {
+              setIsStart((start) => !start);
+              setPositionTest(0);
+            }}
             className="group flex items-center text-4xl font-bold text-primary dark:text-primary-foreground"
           >
             ST
