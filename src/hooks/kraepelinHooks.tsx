@@ -47,11 +47,16 @@ export const useKraepelin = () => {
 
   useEffect(() => {
     // set position test
-    const element = document.getElementById(`#${positionTest}`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (isStart && positionTest === 0) {
+      const element = document.getElementById("#0");
+      element && element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      const element = document.getElementById(`#${positionTest}`);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
-  }, [positionTest]);
+  }, [isStart, positionTest]);
 
   useEffect(() => {
     // set time test
